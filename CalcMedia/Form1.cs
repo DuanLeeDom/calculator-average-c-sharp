@@ -29,19 +29,27 @@ namespace CalcMedia
 
         private void button1_Click(object sender, EventArgs e) //CALCULAR
         {
-            float soma, media, valor;
-            soma = 0;
-
-            foreach (Control controle in this.Controls)
+            try
             {
-                if (controle is TextBox)
-                {
-                    valor = Convert.ToSingle(((TextBox)controle).Text);
-                    soma += valor;
-                }
+                float soma, media, valor;
+                soma = 0;
 
-                media = soma / 4;
-                this.Controls["label7"].Text = media.ToString();
+                foreach (Control controle in this.Controls)
+                {
+                    if (controle is TextBox)
+                    {
+                        valor = Convert.ToSingle(((TextBox)controle).Text);
+                        soma += valor;
+                    }
+
+                    media = soma / 4;
+                    this.Controls["label7"].Text = media.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO nenhuma nota foi adicionada | " + ex.Message);
+                this.Close();
             }
         }
 
